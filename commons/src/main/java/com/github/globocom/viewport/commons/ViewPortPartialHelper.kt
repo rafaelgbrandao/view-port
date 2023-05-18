@@ -1,6 +1,8 @@
 package com.github.globocom.viewport.commons
 
+import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -8,18 +10,23 @@ object ViewPortPartialHelper {
 
     fun findPartialVisibleChild(
         recyclerView: RecyclerView,
-        layoutManager: RecyclerView.LayoutManager,
+        layoutManager: LinearLayoutManager,
         threshold: Float,
-        fromEndToStart: Boolean
+        fromEndToStart: Boolean,
+        hasThresholdPadding: Boolean,
     ): Int {
+        var vertical = false
+
         val helper: OrientationHelper = if (layoutManager.canScrollVertically()) {
-            OrientationHelper.createVerticalHelper(layoutManager)
+            OrientationHelper.createVerticalHelper(layoutManager).also { vertical = true }
         } else {
             OrientationHelper.createHorizontalHelper(layoutManager)
         }
 
-        val start: Int = helper.startAfterPadding
-        val end: Int = helper.endAfterPadding
+        Log.d("growth", "${recyclerView.resources.getResourceEntryName(recyclerView.id)} padding: ${helper.startAfterPadding} sem: ${getStart(recyclerView, vertical)}")
+
+        val start: Int = if (hasThresholdPadding) helper.startAfterPadding else getStart(recyclerView, vertical)
+        val end: Int = if (hasThresholdPadding) helper.endAfterPadding else getEnd(recyclerView, vertical)
 
         val progression = 0.until(layoutManager.childCount).let {
             if (fromEndToStart) it.reversed() else it
@@ -37,6 +44,12 @@ object ViewPortPartialHelper {
         }
         return RecyclerView.NO_POSITION
     }
+
+    private fun getStart(recyclerView: RecyclerView, vertical: Boolean) =
+        if (vertical) recyclerView.top else recyclerView.left
+
+    private fun getEnd(recyclerView: RecyclerView, vertical: Boolean) =
+        if (vertical) recyclerView.bottom else recyclerView.right
 
     private fun checkThreshold(
         threshold: Float,

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +44,7 @@ open class ViewPortRecyclerView @JvmOverloads constructor(
     private val scrollIdleTimeoutHandler = Handler()
     private var firstAndLastVisibleItemsLiveData = ViewPortLiveData<Pair<Int, Int>>()
     private var threshold: Threshold = Threshold.VISIBLE
+    private var hasThresholdPadding: Boolean = true
 
     /**
      * [Runnable] to run when [recyclerView] scroll turns [RecyclerView.SCROLL_STATE_IDLE].
@@ -62,27 +64,31 @@ open class ViewPortRecyclerView @JvmOverloads constructor(
 
             (recyclerView.layoutManager as? LinearLayoutManager)?.let {
                 // Gets first item completely visible position.
-                val firstItemPosition = if (threshold == Threshold.VISIBLE) {
+                val firstItemPosition = if (threshold == Threshold.VISIBLE && hasThresholdPadding) {
                     it.findFirstCompletelyVisibleItemPosition()
                 } else {
                     ViewPortPartialHelper.findPartialVisibleChild(
                         recyclerView,
                         it,
                         threshold.proportion,
-                        false
+                        false,
+                        hasThresholdPadding,
                     )
                 }
+
                 // Gets last item completely visible position.
-                val lastItemPosition = if (threshold == Threshold.VISIBLE) {
+                val lastItemPosition = if (threshold == Threshold.VISIBLE && hasThresholdPadding) {
                     it.findLastCompletelyVisibleItemPosition()
                 } else {
                     ViewPortPartialHelper.findPartialVisibleChild(
                         recyclerView,
                         it,
                         threshold.proportion,
-                        true
+                        true,
+                        hasThresholdPadding,
                     )
                 }
+
                 firstAndLastVisibleItemsLiveData.value = Pair(firstItemPosition, lastItemPosition)
             }
         }
@@ -208,6 +214,10 @@ open class ViewPortRecyclerView @JvmOverloads constructor(
 
     fun threshold(threshold: Threshold) = apply {
         this.threshold = threshold
+    }
+
+    fun hasThresholdPadding(hasThresholdPadding: Boolean) = apply {
+        this.hasThresholdPadding = hasThresholdPadding
     }
 
     /**
