@@ -23,8 +23,6 @@ object ViewPortPartialHelper {
             OrientationHelper.createHorizontalHelper(layoutManager)
         }
 
-        Log.d("growth", "${recyclerView.resources.getResourceEntryName(recyclerView.id)} padding: ${helper.startAfterPadding} sem: ${getStart(recyclerView, vertical)}")
-
         val start: Int = if (hasThresholdPadding) helper.startAfterPadding else getStart(recyclerView, vertical)
         val end: Int = if (hasThresholdPadding) helper.endAfterPadding else getEnd(recyclerView, vertical)
 
