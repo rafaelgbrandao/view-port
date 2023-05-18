@@ -10,21 +10,21 @@ object ViewPortPartialHelper {
 
     fun findPartialVisibleChild(
         recyclerView: RecyclerView,
-        layoutManager: LinearLayoutManager,
+        layoutManager: RecyclerView.LayoutManager,
         threshold: Float,
         fromEndToStart: Boolean,
         hasThresholdPadding: Boolean,
     ): Int {
-        var vertical = false
+        val isVertical = layoutManager.canScrollVertically()
 
-        val helper: OrientationHelper = if (layoutManager.canScrollVertically()) {
-            OrientationHelper.createVerticalHelper(layoutManager).also { vertical = true }
+        val helper: OrientationHelper = if (isVertical) {
+            OrientationHelper.createVerticalHelper(layoutManager)
         } else {
             OrientationHelper.createHorizontalHelper(layoutManager)
         }
 
-        val start: Int = if (hasThresholdPadding) helper.startAfterPadding else getStart(recyclerView, vertical)
-        val end: Int = if (hasThresholdPadding) helper.endAfterPadding else getEnd(recyclerView, vertical)
+        val start: Int = if (hasThresholdPadding) helper.startAfterPadding else getStart(recyclerView, isVertical)
+        val end: Int = if (hasThresholdPadding) helper.endAfterPadding else getEnd(recyclerView, isVertical)
 
         val progression = 0.until(layoutManager.childCount).let {
             if (fromEndToStart) it.reversed() else it
