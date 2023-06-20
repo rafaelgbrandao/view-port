@@ -1,15 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.maxSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.github.globocom.viewport.sample"
-        minSdkVersion rootProject.ext.minMobileSdkVersion
-        targetSdkVersion rootProject.ext.maxSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
 
         versionCode 1
         versionName "1.0.0"
@@ -48,6 +46,10 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -60,8 +62,8 @@ android {
 
 dependencies {
     implementation project(':library-mobile')
-    implementation rootProject.androidDependencies.kotlin
-    implementation rootProject.androidDependencies.appCompat
-    implementation rootProject.androidDependencies.recyclerview
-    implementation rootProject.androidDependencies.constraintlayout
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
 }

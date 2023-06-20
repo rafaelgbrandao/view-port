@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.globocom.viewport.mobile.Threshold
-import kotlinx.android.synthetic.main.activity_main.*
+import com.github.globocom.viewport.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     companion object {
@@ -24,36 +24,41 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         Threshold.ALMOST_HIDDEN.name
     )
 
+    private var activityMainBinding: ActivityMainBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+         setContentView(ActivityMainBinding
+            .inflate(layoutInflater)
+             .also { activityMainBinding = it }
+             .root)
 
         setRecyclerView(LINEAR_LAYOUT_MANAGER, Threshold.VISIBLE)
 
-        activity_main_view_port_recycler_view.apply {
+        activityMainBinding?.activityMainViewPortRecyclerView?.apply {
             viewedItemsLiveData.observe(this@MainActivity, Observer {
-                activity_main_text_view_items_viewed_tv.text =
+                activityMainBinding?.activityMainTextViewItemsViewedTv?.text =
                     getString(R.string.view_port_viewed_items, it.toString())
             })
             onlyNewViewedItemsLiveData.observe(this@MainActivity, Observer {
-                activity_main_text_view_new_viewed_items.text =
+                activityMainBinding?.activityMainTextViewNewViewedItems?.text =
                     getString(R.string.view_port_new_visible_items, it.toString())
             })
             lifecycleOwner = this@MainActivity
             threshold(Threshold.VISIBLE)
         }
 
-        activity_main_button_linear_layout.setOnClickListener {
+        activityMainBinding?.activityMainButtonLinearLayout?.setOnClickListener {
             setRecyclerView(LINEAR_LAYOUT_MANAGER, getSelectedThreshold())
-            activity_main_view_port_recycler_view.invalidate()
+            activityMainBinding?.activityMainViewPortRecyclerView?.invalidate()
         }
 
-        activity_main_button_grid_layout.setOnClickListener {
+        activityMainBinding?.activityMainButtonGridLayout?.setOnClickListener {
             setRecyclerView(GRID_LAYOUT_MANAGER, getSelectedThreshold())
-            activity_main_view_port_recycler_view.invalidate()
+            activityMainBinding?.activityMainViewPortRecyclerView?.invalidate()
         }
 
-        activity_main_spinner_threshold.run {
+        activityMainBinding?.activityMainSpinnerThreshold?.run {
             this.adapter = ArrayAdapter(
                 this@MainActivity,
                 android.R.layout.simple_spinner_item,
@@ -63,11 +68,16 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    override fun onDestroy() {
+        activityMainBinding = null
+        super.onDestroy()
+    }
+
     private fun setRecyclerView(
         layoutManagerOption: Int,
         threshold: Threshold
     ) {
-        activity_main_view_port_recycler_view.apply {
+        activityMainBinding?.activityMainViewPortRecyclerView?.apply {
             setHasFixedSize(true)
             threshold(threshold)
             layoutManager =
@@ -79,11 +89,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun getSelectedThreshold(): Threshold {
-        return Threshold.valueOf(spinnerThresholdValues[activity_main_spinner_threshold.selectedItemPosition])
+        return activityMainBinding?.activityMainSpinnerThreshold?.selectedItemPosition?.let { Threshold.valueOf(spinnerThresholdValues[it]) }
+            ?: Threshold.HALF
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        activity_main_view_port_recycler_view.threshold(Threshold.valueOf(spinnerThresholdValues[position]))
+        activityMainBinding?.activityMainViewPortRecyclerView?.threshold(Threshold.valueOf(spinnerThresholdValues[position]))
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
