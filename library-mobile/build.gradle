@@ -5,19 +5,18 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 android {
-    compileSdkVersion rootProject.ext.maxSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minMobileSdkVersion
-        targetSdkVersion rootProject.ext.maxSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 11
-        versionName "1.4.1"
+        versionCode 12
+        versionName "1.5.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'consumer-rules.pro'
-        consumerProguardFiles 'consumer-rules.pro','proguard-android.txt'
+        consumerProguardFiles 'consumer-rules.pro', 'proguard-android.txt'
     }
 
     buildTypes {
@@ -62,14 +61,14 @@ android {
 }
 
 dependencies {
-    implementation rootProject.androidDependencies.kotlin
-    implementation rootProject.androidDependencies.appCompat
-    implementation rootProject.androidDependencies.recyclerview
-    implementation rootProject.androidDependencies.commons
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
+    implementation "com.github.globocom:viewport-commons:$commons_version"
 
-    testImplementation rootProject.testDependencies.junit
-    testImplementation rootProject.testDependencies.robolectric
-    testImplementation rootProject.testDependencies.mockK
+    testImplementation "androidx.test.ext:junit:$jUnit_version"
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "io.mockk:mockk:$mockK_version"
 }
 
 

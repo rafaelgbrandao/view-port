@@ -46,3 +46,7 @@ Change Log
 ## Version 1.4.0
 
  * Add a possibility to consider a partial item as valid.
+
+## Version 1.5.0
+
+ * Add a possibility to consider a padding item.
