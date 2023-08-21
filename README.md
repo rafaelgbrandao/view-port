@@ -110,7 +110,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.globocom:viewport-tv:1.5.0'
+    implementation 'com.github.globocom:viewport-tv:1.6.0'
 }
 ````
 
