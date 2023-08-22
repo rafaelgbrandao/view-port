@@ -14,14 +14,13 @@ import com.rubensousa.dpadrecyclerview.DpadRecyclerView
 import com.rubensousa.dpadrecyclerview.OnViewHolderSelectedListener
 import com.rubensousa.dpadrecyclerview.ParentAlignment
 
-open class DpadViewPortVerticalGridView @JvmOverloads constructor(
+open class ViewPortDpadRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : DpadRecyclerView(context, attrs, defStyleAttr), LifecycleObserver {
     init {
         isSaveEnabled = true
-        setOrientation(VERTICAL)
     }
 
     private companion object {
