@@ -153,8 +153,8 @@ afterEvaluate {
                 name = "OSSStaging"
                 url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
                 credentials {
-                    username = "halysongoncalves"
-                    password = "1990limahlglima"
+                    username = ""
+                    password = ""
                 }
             }
 
@@ -162,8 +162,8 @@ afterEvaluate {
                 name = "OSSSnapshots"
                 url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
                 credentials {
-                    username = "halysongoncalves"
-                    password = "1990limahlglima"
+                    username = ""
+                    password = ""
                 }
             }
         }
