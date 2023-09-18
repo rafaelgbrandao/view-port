@@ -50,3 +50,7 @@ Change Log
 ## Version 1.5.0
 
  * Add a possibility to consider a padding item.
+
+## Version 1.6.0
+
+ * Add suport D-pad recycler view
