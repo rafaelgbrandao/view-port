@@ -17,17 +17,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .also { activityMainBinding = it }
             .root
         )
-        activityMainBinding?.activityMainButtonMobile?.setOnClickListener(this)
-        activityMainBinding?.activityMainButtonTv?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonMobileViewPortRecyclerView?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonTvDpadRecyclerView?.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            activityMainBinding?.activityMainButtonMobile -> {
+            activityMainBinding?.activityMainButtonMobileViewPortRecyclerView -> {
                 startIntent(ActivityMobile::class.java)
             }
 
-            activityMainBinding?.activityMainButtonTv -> { }
+            activityMainBinding?.activityMainButtonTvDpadRecyclerView -> { }
 
             else -> { }
         }

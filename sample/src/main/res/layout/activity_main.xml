@@ -9,43 +9,62 @@
         android:id="@+id/activity_main_button_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Selecione o device"
+        android:focusable="false"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Selecione o componente"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="false" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/activity_main_view_divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_main_button_title" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_main_view_divider"
+        app:constraint_referenced_ids="activity_main_button_mobile_view_port_recycler_view,
+        activity_main_button_tv_dpad_recycler_view,
+        activity_main_button_tv_horizontal_recycler_view,
+        activity_main_button_tv_vertical_recycler_view"
+        app:flow_maxElementsWrap="2"
+        app:flow_wrapMode="aligned"
+        app:flow_verticalStyle="packed"
+        app:flow_verticalGap="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:constraint_referenced_ids="activity_main_button_mobile, activity_main_button_tv" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_view_divider" />
 
     <Button
-        android:id="@+id/activity_main_button_mobile"
+        android:id="@+id/activity_main_button_mobile_view_port_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mobile" />
+        android:text="View Port recycler View (Mobile)" />
 
     <Button
-        android:id="@+id/activity_main_button_tv"
+        android:id="@+id/activity_main_button_tv_dpad_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tv" />
+        android:text="D Pad Recycler View (Tv)" />
+
+    <Button
+        android:id="@+id/activity_main_button_tv_horizontal_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horizontal Grid View (Tv)" />
+
+    <Button
+        android:id="@+id/activity_main_button_tv_vertical_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vertical Grid View (Tv)" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
