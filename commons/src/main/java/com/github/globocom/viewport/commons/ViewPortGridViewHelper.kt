@@ -1,6 +1,5 @@
 package com.github.globocom.viewport.commons
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +15,8 @@ object ViewPortGridViewHelper {
                 layoutManager,
                 0,
                 layoutManager.childCount,
-                completelyVisible = true,
-                acceptPartiallyVisible = false
+                completelyVisible = false,
+                acceptPartiallyVisible = true
             )?.let { childView ->
                 recyclerView.getChildAdapterPosition(childView)
             }
@@ -27,7 +26,7 @@ object ViewPortGridViewHelper {
         recyclerView.layoutManager?.let { layoutManager ->
             findOneVisibleChild(
                 layoutManager,
-                layoutManager.childCount,
+                layoutManager.childCount -1,
                 -1,
                 completelyVisible = true,
                 acceptPartiallyVisible = false

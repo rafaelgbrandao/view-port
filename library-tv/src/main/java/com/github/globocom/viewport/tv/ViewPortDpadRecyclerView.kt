@@ -4,17 +4,15 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
-import com.github.globocom.viewport.commons.ViewPortGridViewHelper
 import com.github.globocom.viewport.commons.ViewPortLiveData
 import com.github.globocom.viewport.commons.ViewPortManager
-import com.github.globocom.viewport.commons.ViewPortPartialHelper
 import com.rubensousa.dpadrecyclerview.DpadRecyclerView
 import com.rubensousa.dpadrecyclerview.OnViewHolderSelectedListener
 import com.rubensousa.dpadrecyclerview.ParentAlignment
+import com.rubensousa.dpadrecyclerview.layoutmanager.PivotLayoutManager
 
 open class ViewPortDpadRecyclerView @JvmOverloads constructor(
     context: Context,
@@ -46,25 +44,22 @@ open class ViewPortDpadRecyclerView @JvmOverloads constructor(
 
     private val childSelectedListener by lazy {
         object : OnViewHolderSelectedListener {
-            override fun onViewHolderSelected(
+
+            override fun onViewHolderSelectedAndAligned(
                 parent: RecyclerView,
                 child: ViewHolder?,
                 position: Int,
                 subPosition: Int
             ) {
-                super.onViewHolderSelected(parent, child, position, subPosition)
+                super.onViewHolderSelectedAndAligned(parent, child, position, subPosition)
+                (parent.layoutManager as? PivotLayoutManager)?.let {
+                    val firstVisibleItemPosition = it.findFirstCompletelyVisibleItemPosition()
 
-                Log.d("Debug", "Total: ${parent.layoutManager?.childCount}")
-                val firstVisibleItemPosition =
-                    ViewPortGridViewHelper.findFirstVisibleItemPosition(parent)
+                    val lastVisibleItemPosition = it.findLastCompletelyVisibleItemPosition()
 
-                val lastVisibleItemPosition =
-                    ViewPortGridViewHelper.findLastCompletelyVisibleItemPosition(parent)
-
-                Log.d("Debug", "Pos: $firstVisibleItemPosition - $lastVisibleItemPosition")
-
-                firstAndLastVisibleItemsLiveData.value =
-                    Pair(firstVisibleItemPosition, lastVisibleItemPosition)
+                    firstAndLastVisibleItemsLiveData.value =
+                        Pair(firstVisibleItemPosition, lastVisibleItemPosition)
+                }
             }
         }
     }
