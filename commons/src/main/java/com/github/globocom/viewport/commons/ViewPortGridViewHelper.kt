@@ -26,7 +26,7 @@ object ViewPortGridViewHelper {
         recyclerView.layoutManager?.let { layoutManager ->
             findOneVisibleChild(
                 layoutManager,
-                layoutManager.childCount -1,
+                layoutManager.childCount - 1,
                 -1,
                 completelyVisible = true,
                 acceptPartiallyVisible = false
@@ -65,7 +65,7 @@ object ViewPortGridViewHelper {
                 if (completelyVisible) {
                     if (childStart >= start && childEnd <= end) {
                         return child
-                    } else if (acceptPartiallyVisible) {
+                    } else if (acceptPartiallyVisible && partiallyVisible == null) {
                         partiallyVisible = child
                     }
                 } else {

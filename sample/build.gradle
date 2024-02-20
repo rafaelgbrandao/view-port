@@ -68,4 +68,5 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
     implementation "androidx.leanback:leanback:$leanback_version"
+    implementation "com.rubensousa.dpadrecyclerview:dpadrecyclerview:$dpad_recycler_view_version"
 }
