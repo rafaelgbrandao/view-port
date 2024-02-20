@@ -62,8 +62,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     api "androidx.leanback:leanback:$support_version"
-    api "com.github.globocom:viewport-commons:$commons_version"
-    implementation "com.rubensousa.dpadrecyclerview:dpadrecyclerview:$dpad_recycler_view_version"
+    //api "com.github.globocom:viewport-commons:$commons_version"
+    api project(':commons')
+    api "com.rubensousa.dpadrecyclerview:dpadrecyclerview:$dpad_recycler_view_version"
 
     testImplementation "androidx.test.ext:junit:$jUnit_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"

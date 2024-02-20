@@ -9,10 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.globocom.viewport.mobile.Threshold
-import com.github.globocom.viewport.sample.databinding.ActivityMainBinding
 import com.github.globocom.viewport.sample.databinding.ActivityMobileBinding
 
-class ActivityMobile : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     companion object {
         private const val LINEAR_LAYOUT_MANAGER = 0
         private const val GRID_LAYOUT_MANAGER = 1
@@ -37,15 +36,15 @@ class ActivityMobile : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setRecyclerView(LINEAR_LAYOUT_MANAGER, Threshold.VISIBLE)
 
         activityMobileBinding?.activityMainViewPortRecyclerView?.apply {
-            viewedItemsLiveData.observe(this@ActivityMobile, Observer {
+            viewedItemsLiveData.observe(this@ActivityViewPortRecyclerView, Observer {
                 activityMobileBinding?.activityMainTextViewItemsViewedTv?.text =
                     getString(R.string.view_port_viewed_items, it.toString())
             })
-            onlyNewViewedItemsLiveData.observe(this@ActivityMobile, Observer {
+            onlyNewViewedItemsLiveData.observe(this@ActivityViewPortRecyclerView, Observer {
                 activityMobileBinding?.activityMainTextViewNewViewedItems?.text =
                     getString(R.string.view_port_new_visible_items, it.toString())
             })
-            lifecycleOwner = this@ActivityMobile
+            lifecycleOwner = this@ActivityViewPortRecyclerView
             threshold(Threshold.VISIBLE)
         }
 
@@ -61,11 +60,11 @@ class ActivityMobile : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         activityMobileBinding?.activityMainSpinnerThreshold?.run {
             this.adapter = ArrayAdapter(
-                this@ActivityMobile,
+                this@ActivityViewPortRecyclerView,
                 android.R.layout.simple_spinner_item,
                 spinnerThresholdValues
             )
-            onItemSelectedListener = this@ActivityMobile
+            onItemSelectedListener = this@ActivityViewPortRecyclerView
         }
     }
 
@@ -85,7 +84,7 @@ class ActivityMobile : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 if (layoutManagerOption == GRID_LAYOUT_MANAGER) GridLayoutManager(context, 4)
                 else LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-            adapter = ViewPortSampleAdapter((0..100).toList())
+            adapter = ViewPortAdapter((0..100).toList())
         }
     }
 

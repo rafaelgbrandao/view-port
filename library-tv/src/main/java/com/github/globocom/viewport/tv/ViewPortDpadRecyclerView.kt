@@ -4,12 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.github.globocom.viewport.commons.ViewPortGridViewHelper
 import com.github.globocom.viewport.commons.ViewPortLiveData
 import com.github.globocom.viewport.commons.ViewPortManager
+import com.github.globocom.viewport.commons.ViewPortPartialHelper
 import com.rubensousa.dpadrecyclerview.DpadRecyclerView
 import com.rubensousa.dpadrecyclerview.OnViewHolderSelectedListener
 import com.rubensousa.dpadrecyclerview.ParentAlignment
@@ -52,11 +54,14 @@ open class ViewPortDpadRecyclerView @JvmOverloads constructor(
             ) {
                 super.onViewHolderSelected(parent, child, position, subPosition)
 
+                Log.d("Debug", "Total: ${parent.layoutManager?.childCount}")
                 val firstVisibleItemPosition =
                     ViewPortGridViewHelper.findFirstVisibleItemPosition(parent)
 
                 val lastVisibleItemPosition =
                     ViewPortGridViewHelper.findLastCompletelyVisibleItemPosition(parent)
+
+                Log.d("Debug", "Pos: $firstVisibleItemPosition - $lastVisibleItemPosition")
 
                 firstAndLastVisibleItemsLiveData.value =
                     Pair(firstVisibleItemPosition, lastVisibleItemPosition)

@@ -24,10 +24,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             activityMainBinding?.activityMainButtonMobileViewPortRecyclerView -> {
-                startIntent(ActivityMobile::class.java)
+                startIntent(ActivityViewPortRecyclerView::class.java)
             }
 
-            activityMainBinding?.activityMainButtonTvDpadRecyclerView -> { }
+            activityMainBinding?.activityMainButtonTvDpadRecyclerView -> {
+                startIntent(ActivityDpadRecyclerViewTv::class.java)
+            }
 
             else -> { }
         }
