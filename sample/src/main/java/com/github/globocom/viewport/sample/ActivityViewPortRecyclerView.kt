@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.globocom.viewport.mobile.Threshold
-import com.github.globocom.viewport.sample.databinding.ActivityMobileBinding
+import com.github.globocom.viewport.sample.databinding.ActivityViewPortRecyclerViewBinding
 
 class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     companion object {
@@ -24,41 +24,41 @@ class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSele
         Threshold.ALMOST_HIDDEN.name
     )
 
-    private var activityMobileBinding: ActivityMobileBinding? = null
+    private var activityBinding: ActivityViewPortRecyclerViewBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         setContentView(ActivityMobileBinding
+         setContentView(ActivityViewPortRecyclerViewBinding
             .inflate(layoutInflater)
-             .also { activityMobileBinding = it }
+             .also { activityBinding = it }
              .root)
 
         setRecyclerView(LINEAR_LAYOUT_MANAGER, Threshold.VISIBLE)
 
-        activityMobileBinding?.activityMainViewPortRecyclerView?.apply {
-            viewedItemsLiveData.observe(this@ActivityViewPortRecyclerView, Observer {
-                activityMobileBinding?.activityMainTextViewItemsViewedTv?.text =
+        activityBinding?.activityMainViewPortRecyclerView?.apply {
+            viewedItemsLiveData.observe(this@ActivityViewPortRecyclerView) {
+                activityBinding?.activityMainTextViewItemsViewedTv?.text =
                     getString(R.string.view_port_viewed_items, it.toString())
-            })
-            onlyNewViewedItemsLiveData.observe(this@ActivityViewPortRecyclerView, Observer {
-                activityMobileBinding?.activityMainTextViewNewViewedItems?.text =
+            }
+            onlyNewViewedItemsLiveData.observe(this@ActivityViewPortRecyclerView) {
+                activityBinding?.activityMainTextViewNewViewedItems?.text =
                     getString(R.string.view_port_new_visible_items, it.toString())
-            })
+            }
             lifecycleOwner = this@ActivityViewPortRecyclerView
             threshold(Threshold.VISIBLE)
         }
 
-        activityMobileBinding?.activityMainButtonLinearLayout?.setOnClickListener {
+        activityBinding?.activityMainButtonLinearLayout?.setOnClickListener {
             setRecyclerView(LINEAR_LAYOUT_MANAGER, getSelectedThreshold())
-            activityMobileBinding?.activityMainViewPortRecyclerView?.invalidate()
+            activityBinding?.activityMainViewPortRecyclerView?.invalidate()
         }
 
-        activityMobileBinding?.activityMainButtonGridLayout?.setOnClickListener {
+        activityBinding?.activityMainButtonGridLayout?.setOnClickListener {
             setRecyclerView(GRID_LAYOUT_MANAGER, getSelectedThreshold())
-            activityMobileBinding?.activityMainViewPortRecyclerView?.invalidate()
+            activityBinding?.activityMainViewPortRecyclerView?.invalidate()
         }
 
-        activityMobileBinding?.activityMainSpinnerThreshold?.run {
+        activityBinding?.activityMainSpinnerThreshold?.run {
             this.adapter = ArrayAdapter(
                 this@ActivityViewPortRecyclerView,
                 android.R.layout.simple_spinner_item,
@@ -69,7 +69,7 @@ class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSele
     }
 
     override fun onDestroy() {
-        activityMobileBinding = null
+        activityBinding = null
         super.onDestroy()
     }
 
@@ -77,7 +77,7 @@ class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSele
         layoutManagerOption: Int,
         threshold: Threshold
     ) {
-        activityMobileBinding?.activityMainViewPortRecyclerView?.apply {
+        activityBinding?.activityMainViewPortRecyclerView?.apply {
             setHasFixedSize(true)
             threshold(threshold)
             layoutManager =
@@ -89,12 +89,12 @@ class ActivityViewPortRecyclerView : AppCompatActivity(), AdapterView.OnItemSele
     }
 
     private fun getSelectedThreshold(): Threshold {
-        return activityMobileBinding?.activityMainSpinnerThreshold?.selectedItemPosition?.let { Threshold.valueOf(spinnerThresholdValues[it]) }
+        return activityBinding?.activityMainSpinnerThreshold?.selectedItemPosition?.let { Threshold.valueOf(spinnerThresholdValues[it]) }
             ?: Threshold.HALF
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        activityMobileBinding?.activityMainViewPortRecyclerView?.threshold(Threshold.valueOf(spinnerThresholdValues[position]))
+        activityBinding?.activityMainViewPortRecyclerView?.threshold(Threshold.valueOf(spinnerThresholdValues[position]))
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

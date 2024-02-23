@@ -20,6 +20,8 @@
         </activity>
 
         <activity android:name=".ActivityViewPortRecyclerView" />
-        <activity android:name=".ActivityDpadRecyclerViewTv" />
+        <activity android:name=".ActivityViewPortDpadRecyclerView" />
+        <activity android:name=".ActivityViewPortHorizontalGridView" />
+        <activity android:name=".ActivityViewPortVerticalGridView" />
     </application>
 </manifest>

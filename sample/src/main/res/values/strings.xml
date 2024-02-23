@@ -11,5 +11,9 @@
     <string name="view_port_old_scroll_y_text">Old Scroll Y: %1$d</string>
     <string name="view_port_reset">Reset</string>
     <string name="view_port_title_with_position">Title %d</string>
+    <string name="activity_main_button_view_port_recycler_view">View Port Recyler view (mobile)</string>
+    <string name="activity_main_button_view_port_dpad_recycler_view">Dpad Recycler View (TV)</string>
+    <string name="activity_main_button_view_port_vertical_grid_view">Horizontal Grid View (TV)</string>
+    <string name="activity_main_button_view_port_horizontal_grid_view">Vertical Grid View (TV)</string>
 
 </resources>

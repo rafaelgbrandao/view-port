@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:focusable="false"
-        app:constraint_referenced_ids="activity_dpad_tv_recycler_view_text_view_visible_items,
-        activity_dpad_tv_recycler_view_text_view_new_visible_items"
+        app:constraint_referenced_ids="activity_view_port_horizontal_recycler_view_text_view_visible_items,
+        activity_view_port_horizontal_recycler_view_text_view_new_visible_items"
         app:flow_horizontalStyle="packed"
         app:flow_maxElementsWrap="1"
         app:flow_wrapMode="aligned"
@@ -25,7 +25,7 @@
         app:layout_constraintWidth_default="wrap" />
 
     <View
-        android:id="@+id/activity_dpad_tv_view_divider"
+        android:id="@+id/activityview_port_horizontal_recycler_view_view_divider"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@android:color/black"
@@ -34,25 +34,25 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/activity_dpad_tv_recycler_view_text_view_visible_items"
+        android:id="@+id/activity_view_port_horizontal_recycler_view_text_view_visible_items"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/view_port_viewed_items"
         app:layout_constraintWidth_default="wrap" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/activity_dpad_tv_recycler_view_text_view_new_visible_items"
+        android:id="@+id/activity_view_port_horizontal_recycler_view_text_view_new_visible_items"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/view_port_new_visible_items"
         app:layout_constraintWidth_default="wrap" />
 
-    <com.github.globocom.viewport.tv.ViewPortDpadRecyclerView
-        android:id="@+id/activity_dpad_tv_recycler_view"
+    <com.github.globocom.viewport.tv.ViewPortHorizontalGridView
+        android:id="@+id/activity_view_port_horizontal_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activity_dpad_tv_view_divider"
+        app:layout_constraintEnd_toStartOf="@id/activityview_port_horizontal_recycler_view_view_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -17,18 +17,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .also { activityMainBinding = it }
             .root
         )
-        activityMainBinding?.activityMainButtonMobileViewPortRecyclerView?.setOnClickListener(this)
-        activityMainBinding?.activityMainButtonTvDpadRecyclerView?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonViewPortRecyclerView?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonViewPortDpadRecyclerView?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonViewPortHorizontalGridView?.setOnClickListener(this)
+        activityMainBinding?.activityMainButtonViewPortVerticalGridView?.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            activityMainBinding?.activityMainButtonMobileViewPortRecyclerView -> {
+            activityMainBinding?.activityMainButtonViewPortRecyclerView -> {
                 startIntent(ActivityViewPortRecyclerView::class.java)
             }
 
-            activityMainBinding?.activityMainButtonTvDpadRecyclerView -> {
-                startIntent(ActivityDpadRecyclerViewTv::class.java)
+            activityMainBinding?.activityMainButtonViewPortDpadRecyclerView -> {
+                startIntent(ActivityViewPortDpadRecyclerView::class.java)
+            }
+
+            activityMainBinding?.activityMainButtonViewPortHorizontalGridView -> {
+                startIntent(ActivityViewPortHorizontalGridView::class.java)
+            }
+
+            activityMainBinding?.activityMainButtonViewPortVerticalGridView -> {
+                startIntent(ActivityViewPortVerticalGridView::class.java)
             }
 
             else -> { }
