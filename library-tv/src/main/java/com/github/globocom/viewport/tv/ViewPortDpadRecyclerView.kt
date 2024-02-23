@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
+import com.github.globocom.viewport.commons.ViewPortGridViewHelper
 import com.github.globocom.viewport.commons.ViewPortLiveData
 import com.github.globocom.viewport.commons.ViewPortManager
 import com.rubensousa.dpadrecyclerview.DpadRecyclerView
@@ -52,14 +53,10 @@ open class ViewPortDpadRecyclerView @JvmOverloads constructor(
                 subPosition: Int
             ) {
                 super.onViewHolderSelectedAndAligned(parent, child, position, subPosition)
-                (parent.layoutManager as? PivotLayoutManager)?.let {
-                    val firstVisibleItemPosition = it.findFirstCompletelyVisibleItemPosition()
 
-                    val lastVisibleItemPosition = it.findLastCompletelyVisibleItemPosition()
-
-                    firstAndLastVisibleItemsLiveData.value =
-                        Pair(firstVisibleItemPosition, lastVisibleItemPosition)
-                }
+                val firstVisibleItemPosition = ViewPortGridViewHelper.findFirstVisibleItemPosition(parent)
+                val lastVisibleItemPosition = ViewPortGridViewHelper.findLastCompletelyVisibleItemPosition(parent)
+                firstAndLastVisibleItemsLiveData.value = Pair(firstVisibleItemPosition, lastVisibleItemPosition)
             }
         }
     }
@@ -95,12 +92,12 @@ open class ViewPortDpadRecyclerView @JvmOverloads constructor(
             viewPortManager = ViewPortManager(firstAndLastVisibleItemsLiveData, field)
 
             field?.let {
-                viewPortManager?.viewedItemsLiveData?.observe(it, Observer { viewedItems ->
+                viewPortManager?.viewedItemsLiveData?.observe(it) { viewedItems ->
                     this.viewedItemsLiveData.value = viewedItems
-                })
-                viewPortManager?.onlyNewViewedItemsLiveData?.observe(it, Observer { viewedItems ->
+                }
+                viewPortManager?.onlyNewViewedItemsLiveData?.observe(it) { viewedItems ->
                     this.onlyNewViewedItemsLiveData.value = viewedItems
-                })
+                }
             }
 
             // Attach and listen a ChildViewHolderSelectedListener.
