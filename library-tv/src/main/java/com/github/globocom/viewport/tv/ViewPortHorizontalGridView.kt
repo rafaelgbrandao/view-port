@@ -50,6 +50,8 @@ open class ViewPortHorizontalGridView @JvmOverloads constructor(
                 position: Int,
                 subposition: Int
             ) {
+                super.onChildViewHolderSelectedAndPositioned(parent, child, position, subposition)
+
                 parent?.let {
                     val firstVisibleItemPosition =
                         ViewPortGridViewHelper.findFirstVisibleItemPosition(parent)
