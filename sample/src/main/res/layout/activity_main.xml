@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:focusable="false"
         android:gravity="center"
-        android:text="Selecione o componente"
+        android:text="Selecione o view port"
         android:textSize="20dp"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +22,6 @@
         android:id="@+id/activity_main_view_divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
         android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,12 +59,12 @@
         android:id="@+id/activity_main_button_view_port_horizontal_grid_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_button_view_port_horizontal_grid_view" />
+        android:text="@string/activity_main_button_view_port_vertical_grid_view" />
 
     <Button
         android:id="@+id/activity_main_button_view_port_vertical_grid_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_button_view_port_vertical_grid_view" />
+        android:text="@string/activity_main_button_view_port_horizontal_grid_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
