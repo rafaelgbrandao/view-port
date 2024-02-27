@@ -1,5 +1,7 @@
 Change Log
 ==========
+## Version 1.8.0 (ViewPortTv)
+ * Modifica o listener de `onChildViewHolderSelected` para `onChildViewHolderSelectedAndPositioned`
 
 ## Version 1.0.0
 
