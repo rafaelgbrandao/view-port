@@ -19,6 +19,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
     }
 }
@@ -35,9 +36,9 @@ ext {
     constraint_version = '2.1.4'
     jUnit_version = '1.0.0'
     robolectric_version = '4.3.1'
-    commons_version = '1.7.0'
-    viewport_mobile_version = '1.7.0'
-    viewport_tv_version = '1.9.0'
+    commons_version = '1.6.0'
+    viewport_mobile_version = '1.1.0'
+    viewport_tv_version = '1.1.0'
     mockK_version = '1.9.2'
     dpad_recycler_view_version = '1.2.0-rc01'
     leanback_version = '1.1.0-rc02'
