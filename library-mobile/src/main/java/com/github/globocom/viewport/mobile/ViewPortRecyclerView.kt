@@ -163,6 +163,10 @@ open class ViewPortRecyclerView @JvmOverloads constructor(
             viewPortManager?.startLib()
         }
 
+    fun clearViewedItems() {
+        viewPortManager?.clearList()
+    }
+
     override fun onSaveInstanceState(): Parcelable? {
         val superState = super.onSaveInstanceState()
         val myState = Bundle()

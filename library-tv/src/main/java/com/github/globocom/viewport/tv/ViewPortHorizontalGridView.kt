@@ -113,6 +113,9 @@ open class ViewPortHorizontalGridView @JvmOverloads constructor(
             viewPortManager?.startLib()
         }
 
+    fun clearViewedItems() {
+        viewPortManager?.clearList()
+    }
 
     override fun onChildAttachedToWindow(child: View) {
         super.onChildAttachedToWindow(child)

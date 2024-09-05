@@ -107,6 +107,10 @@ open class ViewPortDpadRecyclerView @JvmOverloads constructor(
             viewPortManager?.startLib()
         }
 
+    fun clearViewedItems() {
+        viewPortManager?.clearList()
+    }
+
     override fun onChildAttachedToWindow(child: View) {
         super.onChildAttachedToWindow(child)
         setParentAlignment(alignment = ParentAlignment(edge = ParentAlignment.Edge.MIN_MAX))

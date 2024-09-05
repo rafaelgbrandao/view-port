@@ -124,6 +124,10 @@ class ViewPortManager(
 
     fun stopLib() {
         pauseLib()
+        clearList()
+    }
+
+    fun clearList() {
         oldItemsList.clear()
         currentVisibleItemsList.clear()
         previouslyVisibleItemsList.clear()

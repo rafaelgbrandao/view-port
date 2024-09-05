@@ -110,6 +110,10 @@ open class ViewPortVerticalGridView @JvmOverloads constructor(
             viewPortManager?.startLib()
         }
 
+    fun clearViewedItems() {
+        viewPortManager?.clearList()
+    }
+
     override fun onChildAttachedToWindow(child: View) {
         super.onChildAttachedToWindow(child)
         windowAlignment = WINDOW_ALIGN_BOTH_EDGE
