@@ -2,6 +2,8 @@ Change Log
 ==========
 
 ## Version 1.7.0 (Commons)
+## Version 1.7.0 (ViewPortMobile)
+## Version 1.9.0 (ViewPortTv)
 * Add function to clear viewed items
 
 ## Version 1.8.0 (ViewPortTv)
