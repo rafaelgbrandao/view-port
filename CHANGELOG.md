@@ -1,7 +1,11 @@
 Change Log
 ==========
+
+## Version 1.7.0 (Commons)
+* Add function to clear viewed items
+
 ## Version 1.8.0 (ViewPortTv)
- * Modifica o listener de `onChildViewHolderSelected` para `onChildViewHolderSelectedAndPositioned`
+ * Modify the listener `onChildViewHolderSelected` to `onChildViewHolderSelectedAndPositioned`
 
 ## Version 1.0.0
 
